@@ -48,10 +48,13 @@ function addTodo(todo: Todo): void {
     } else {
         li.style.textDecoration = 'none';
     }
+    // sets title attribute to display tooltip
+    li.title = 'Left-click to mark done/undone, right-click to delete'
     // finction to be executed for event does not need brackets
     // because this would lead to execution without the event
     // calling it
     li.addEventListener('click', checkCompleted);
+    li.addEventListener('contextmenu', deleteTodo);
     ul.append(li);
 }
 
@@ -72,6 +75,21 @@ function checkCompleted(this: HTMLLIElement): void {
         todo.completed = false;
     }
     storeLocalTodos(storageKey, todos);
+}
+
+function deleteTodo(this: HTMLLIElement, event: MouseEvent): void{
+    // prevents default behaviour of right-click context menu
+    event.preventDefault();
+    // selects todo(object) in array
+    const todoIndex: number = todos.findIndex(todo => todo.id === this.id);
+    // splice method removes the todo from array
+    todos.splice(todoIndex, 1);
+    // updates locally stored todos array
+    storeLocalTodos(storageKey, todos);
+    // selects todo from dom
+    const toBeDeleted = document.getElementById(this.id) as HTMLLIElement;
+    // removes element from dom
+    toBeDeleted.remove();
 }
 
 // renders all todos from array
