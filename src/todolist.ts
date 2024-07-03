@@ -58,7 +58,7 @@ function addTodo(todo: Todo): void {
     ul.append(li);
 }
 
-// this keyword here belongs to the recipient of
+// 'this' keyword here belongs to the recipient of
 // the function which is the li element
 function checkCompleted(this: HTMLLIElement): void {
     // finds the particular todo in the todos array and casts it
@@ -82,12 +82,11 @@ function deleteTodo(this: HTMLLIElement, event: MouseEvent): void{
     event.preventDefault();
     // selects todo(object) in array
     const todoIndex: number = todos.findIndex(todo => todo.id === this.id);
+    
     // splice method removes the todo from array
     todos.splice(todoIndex, 1);
     // updates locally stored todos array
     storeLocalTodos(storageKey, todos);
-    // selects todo from dom
-    const toBeDeleted = document.getElementById(this.id) as HTMLLIElement;
     // removes element from dom
     toBeDeleted.remove();
 }

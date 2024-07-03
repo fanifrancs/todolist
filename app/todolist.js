@@ -47,7 +47,7 @@ function addTodo(todo) {
     li.addEventListener('contextmenu', deleteTodo);
     ul.append(li);
 }
-// this keyword here belongs to the recipient of
+// 'this' keyword here belongs to the recipient of
 // the function which is the li element
 function checkCompleted() {
     // finds the particular todo in the todos array and casts it
@@ -75,8 +75,6 @@ function deleteTodo(event) {
     todos.splice(todoIndex, 1);
     // updates locally stored todos array
     storeLocalTodos(storageKey, todos);
-    // selects todo from dom
-    const toBeDeleted = document.getElementById(this.id);
     // removes element from dom
     toBeDeleted.remove();
 }
