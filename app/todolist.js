@@ -75,6 +75,8 @@ function deleteTodo(event) {
     todos.splice(todoIndex, 1);
     // updates locally stored todos array
     storeLocalTodos(storageKey, todos);
+    // selects todo from dom
+    const toBeDeleted = document.getElementById(this.id);
     // removes element from dom
     toBeDeleted.remove();
 }
