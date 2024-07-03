@@ -3,8 +3,10 @@
 const form = document.querySelector('form');
 const inputField = document.querySelector('#input');
 const ul = document.querySelector('ul');
-// declares array to store todos
-let todos;
+// generateId() function is used here to create a unique
+// identifier for the key of the address that stores the todos
+const storageKey = '1719991974021-43q4d1h';
+const todos = retrieveLocalTodos(storageKey);
 // A clever function to generate unique ids for the todos.
 // Thanks to chatgpt for sponsoring this function : )
 function generateId() {
@@ -23,9 +25,6 @@ function storeLocalTodos(storageKey, array) {
     const todos = JSON.stringify(array);
     localStorage.setItem(storageKey, todos);
 }
-// A wierd combination of string is used so as to create a
-// unique identifier for the address that stores the todos
-todos = retrieveLocalTodos('xswbvjc');
 // renders a single todo to the page
 function addTodo(todo) {
     const li = document.createElement('li');
@@ -53,16 +52,16 @@ function checkCompleted() {
     // certain it would not return undefined : )
     const todo = todos.find(todo => todo.id === this.id);
     if (this.style.textDecoration === 'none') {
+        this.style.textDecoration = 'line-through';
         // modifies the completed property and stores the todo
         // back into the array. Thanks to mutability of js objects
-        this.style.textDecoration = 'line-through';
         todo.completed = true;
     }
     else {
         this.style.textDecoration = 'none';
         todo.completed = false;
     }
-    storeLocalTodos('xswbvjc', todos);
+    storeLocalTodos(storageKey, todos);
 }
 // renders all todos from array
 function renderTodos() {
@@ -85,7 +84,7 @@ form.addEventListener('submit', (e) => {
     // pushes a new todo to be added into the todos array
     todos.push(todo);
     // then stores it back into local storage
-    storeLocalTodos('xswbvjc', todos);
+    storeLocalTodos(storageKey, todos);
     // clears the inputfield after todo is obtained from
     // input field
     inputField.value = '';
