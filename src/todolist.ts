@@ -12,7 +12,7 @@ interface Todo {
 
 // generateId() function is used here to create a unique
 // identifier for the key of the address that stores the todos
-const storageKey = 'xswbvjc';
+const storageKey = '1719991974021-43q4d1h';
 const todos: Todo[] = retrieveLocalTodos(storageKey);
 
 // A clever function to generate unique ids for the todos.
