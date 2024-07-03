@@ -10,12 +10,14 @@ interface Todo {
     completed: boolean
 }
 
-// declares array to store todos
-let todos: Todo[];
+// generateId() function is used here to create a unique
+// identifier for the key of the address that stores the todos
+const storageKey = 'xswbvjc';
+const todos: Todo[] = retrieveLocalTodos(storageKey);
 
 // A clever function to generate unique ids for the todos.
 // Thanks to chatgpt for sponsoring this function : )
-function generateId():string {
+function generateId(): string {
     return `${Date.now()}-${Math.random().toString(36).substring(2,9)}`;
 }
 
@@ -34,12 +36,8 @@ function storeLocalTodos(storageKey: string, array: Todo[]): void {
     localStorage.setItem(storageKey, todos);
 }
 
-// A wierd combination of string is used so as to create a
-// unique identifier for the address that stores the todos
-todos = retrieveLocalTodos('xswbvjc');
-
 // renders a single todo to the page
-function addTodo(todo: Todo) {
+function addTodo(todo: Todo): void {
     const li = document.createElement('li') as HTMLLIElement;
     // sets id attribute to todo id so that it can be accessed
     // from the dom when the need arises
@@ -59,25 +57,25 @@ function addTodo(todo: Todo) {
 
 // this keyword here belongs to the recipient of
 // the function which is the li element
-function checkCompleted(this: HTMLLIElement) {
+function checkCompleted(this: HTMLLIElement): void {
     // finds the particular todo in the todos array and casts it
     // as a todo since this could return undefined but i am very
     // certain it would not return undefined : )
     const todo = todos.find(todo => todo.id === this.id) as Todo;
     if (this.style.textDecoration === 'none') {
+        this.style.textDecoration = 'line-through';
         // modifies the completed property and stores the todo
         // back into the array. Thanks to mutability of js objects
-        this.style.textDecoration = 'line-through';
         todo.completed = true;
     } else {
         this.style.textDecoration = 'none';
         todo.completed = false;
     }
-    storeLocalTodos('xswbvjc', todos);
+    storeLocalTodos(storageKey, todos);
 }
 
 // renders all todos from array
-function renderTodos() {
+function renderTodos(): void {
     ul.innerText = '';
     if (todos.length) {
         todos.forEach((todo: Todo) => {
@@ -99,7 +97,7 @@ form.addEventListener('submit', (e: Event) => {
     // pushes a new todo to be added into the todos array
     todos.push(todo);
     // then stores it back into local storage
-    storeLocalTodos('xswbvjc', todos);
+    storeLocalTodos(storageKey, todos);
     // clears the inputfield after todo is obtained from
     // input field
     inputField.value = '';
