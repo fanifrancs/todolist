@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <title>Todolist</title>
+        <meta name="description" content="Todolist + meme generator">
+        <title>Todolist + Memegen</title>
+        <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="../bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -14,9 +15,9 @@
             <!-- first column -->
             <div class="col-md-6 mt-4 order-md-1 order-2 d-flex justify-content-center align-items-center">
                 <div class="card">
-                    <img src="./src/placeholder.jpg" class="card-img-top" alt="meme">
+                    <img src="./img/placeholder.jpg" class="card-img-top" alt="meme">
                     <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <p class="card-text">Connect to the internet to get memes</p>
                     </div>
                 </div>
             </div>
@@ -26,7 +27,7 @@
                     <!-- <h1>todos</h1> -->
                     <form>
                         <input class="form-control" placeholder="Input todo" type="text" id="input" required>
-                        <input class="btn btn-success mt-2 mb-2 form-control" type="submit" value="Add todo" id="submit">
+                        <input class="btn btn-lg btn-secondary mt-2 mb-2 form-control" type="submit" value="Add todo" id="submit">
                     </form>
                 </div>
                 <!-- list -->
@@ -38,6 +39,6 @@
           </div>
         <script src="./app/todolist.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-        <!-- <script src="./app/memegen.js"></script> -->
+        <script src="./app/memegen.js"></script>
     </body>
 </html>

@@ -8,3 +8,13 @@ li{
 .card{
     width: 18rem !important;
 }
+
+.card-text{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* .btn-success{
+    background: linear-gradient(109.6deg, rgb(255, 230, 109) 11.2%, rgb(87, 232, 107) 100.2%) !important;
+    border: none !important;
+} */
