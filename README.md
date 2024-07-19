@@ -1,2 +1,2 @@
 # Todolist
-Todolist + meme generator written in Typescript
+Todolist + meme template generator written in Typescript
